@@ -85,10 +85,8 @@ export interface ISplTokenInfo {
 
 export interface ISmartContractCallPayload {
   rpcUrl: string;
-  network: string;
   contractAddress: string;
   method: string;
-  methodType: 'read' | 'write';
   params: any[];
   value?: number;
   contractAbi?: any[];
@@ -96,4 +94,5 @@ export interface ISmartContractCallPayload {
   gasLimit?: number;
   nonce?: number;
   privateKey?: string;
+  chainId?: number;
 }

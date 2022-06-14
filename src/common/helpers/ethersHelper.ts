@@ -1,3 +1,9 @@
+import { Interface } from '@ethersproject/abi';
+import { Wallet } from '@ethersproject/wallet';
+import { parseUnits } from '@ethersproject/units';
+import Common from '@ethereumjs/common';
+import { Transaction } from '@ethereumjs/tx';
+import request from '../utils/rpc';
 import provider from '../utils/ethers';
 import erc20Abi from '../../abis/erc20.json';
 import { ethers } from 'ethers';
@@ -246,47 +252,61 @@ const getTokenInfo = async ({ address, rpcUrl }: IGetTokenInfoPayload) => {
   return;
 };
 
-const smartContractCall = async (args: ISmartContractCallPayload) => {
-  const { contract, gasPrice, nonce } = await getContract({
-    rpcUrl: args.rpcUrl,
-    contractAddress: args.contractAddress,
-    abi: args.contractAbi,
-    privateKey: args.privateKey,
-  });
+const smartContractSend = async (args: ISmartContractCallPayload) => {
+  // const { contract, gasPrice, nonce } = await getContract({
+  //   rpcUrl: args.rpcUrl,
+  //   contractAddress: args.contractAddress,
+  //   abi: args.contractAbi,
+  //   privateKey: args.privateKey,
+  // });
 
   try {
-    let tx;
-    let overrides = {} as any;
-
-    if (args.methodType === 'read') {
-      overrides = {};
-    } else if (args.methodType === 'write') {
-      overrides = {
-        gasPrice: args.gasPrice
-          ? ethers.utils.parseUnits(args.gasPrice, 'gwei')
-          : gasPrice,
-        nonce: args.nonce || nonce,
-        value: args.value ? ethers.utils.parseEther(args.value.toString()) : 0,
-      };
-
-      if (args.gasLimit) {
-        overrides.gasLimit = args.gasLimit;
-      }
-    }
-
-    if (args.params.length > 0) {
-      tx = await contract?.[args.method](...args.params, overrides);
-    } else {
-      tx = await contract?.[args.method](overrides);
-    }
-
-    return successResponse({
-      data: tx,
+    const abiInterface = new Interface(args.contractAbi || erc20Abi);
+    const wallet = new Wallet(args.privateKey!);
+    const data = abiInterface.encodeFunctionData(args.method, args.params);
+    const estimateGas = await request(args.rpcUrl, {
+      method: 'eth_estimateGas',
+      jsonrpc: '2.0',
+      id: 1,
+      params: [
+        {
+          from: wallet.address,
+          to: args.contractAddress,
+          data,
+        },
+      ],
     });
+    const nonce = await request(args.rpcUrl, {
+      method: 'eth_getTransactionCount',
+      jsonrpc: '2.0',
+      id: 1,
+      params: [wallet.address, 'latest'],
+    });
+    const common = Common.custom({ chainId: args.chainId! });
+    const tx = Transaction.fromTxData(
+      {
+        nonce,
+        to: args.contractAddress,
+        gasLimit: args.gasLimit ? args.gasLimit : estimateGas,
+        gasPrice: parseUnits(args.gasPrice || '100', 'gwei').toHexString(),
+      },
+      { common }
+    );
+    const signedTx = tx.sign(Buffer.from(args.privateKey!, 'hex'));
+    const serializedHex = '0x'.concat(signedTx.serialize().toString('hex'));
+    const txHash = await request(args.rpcUrl, {
+      jsonrpc: '2.0',
+      id: 1,
+      method: 'eth_sendRawTransaction',
+      params: [serializedHex],
+    });
+    return successResponse({ txHash });
   } catch (error) {
     throw error;
   }
 };
+
+const smartContractCall = async (args: ISmartContractCallPayload) => {};
 
 export default {
   getBalance,
@@ -298,5 +318,5 @@ export default {
   getEncryptedJsonFromPrivateKey,
   getWalletFromEncryptedJson,
   getTokenInfo,
-  smartContractCall,
+  smartContractSend,
 };
