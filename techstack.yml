@@ -1,0 +1,177 @@
+repo_name: kingsley-einstein/multichain-crypto-wallet
+report_id: 71ea9213a8b3d20065a78e58be040b31
+repo_type: Public
+timestamp: '2023-11-09T20:09:35+00:00'
+requested_by: kingsley-einstein
+provider: github
+branch: main
+detected_tools_count: 14
+tools:
+- name: JavaScript
+  description: Lightweight, interpreted, object-oriented language with first-class
+    functions
+  website_url: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source: Repo Metadata
+- name: TypeScript
+  description: A superset of JavaScript that compiles to clean JavaScript output
+  website_url: http://www.typescriptlang.org
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1612/bynNY5dJ.jpg
+  detection_source: Repo Metadata
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source: ".github/workflows/size.yml"
+  last_updated_by: iamnotstatic
+  last_updated_on: 2022-05-02 17:46:19.000000000 Z
+- name: Yarn
+  description: A new package manager for JavaScript
+  website_url: https://yarnpkg.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/5848/44mC-kJ3.jpg
+  detection_source: yarn.lock
+  last_updated_by: iamnotstatic
+  last_updated_on: 2022-04-11 13:13:47.000000000 Z
+- name: npm
+  description: The package manager for JavaScript.
+  website_url: https://www.npmjs.com/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source: package.json
+  last_updated_by: iamnotstatic
+  last_updated_on: 2022-04-11 13:13:47.000000000 Z
+- name: axios
+  description: Promise based HTTP client for the browser and node.js
+  website_url: https://github.com/mzabriskie/axios
+  version: 0.27.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Javascript Utilities & Libraries
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: package-lock.json
+  detection_source: package.json
+  last_updated_by: Abdulrahman Yusuf
+  last_updated_on: 2022-05-06 17:07:57.000000000 Z
+- name: husky
+  website_url: https://github.com/typicode/husky
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/9527/5502029.jpeg
+  detection_source: package.json
+  last_updated_by: iamnotstatic
+  last_updated_on: 2022-04-11 13:13:47.000000000 Z
+- name: bip39
+  description: 'Bitcoin BIP39: Mnemonic code for generating deterministic keys'
+  package_url: https://www.npmjs.com/bip39
+  version: 3.0.4
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17210/default_eb6674f470fe213f950fd09d858ebb0f6b6e3dda.png
+  detection_source_url: package-lock.json
+  detection_source: package.json
+  last_updated_by: iamnotstatic
+  last_updated_on: 2022-04-17 11:39:47.000000000 Z
+- name: bs58
+  description: Base 58 encoding / decoding
+  package_url: https://www.npmjs.com/bs58
+  version: 4.0.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16997/default_824835a71140f223a333a5e10225c10368f12857.png
+  detection_source_url: package-lock.json
+  detection_source: package.json
+  last_updated_by: iamnotstatic
+  last_updated_on: 2022-04-11 18:33:12.000000000 Z
+- name: ethers
+  description: Umbrella package for most common Ethers libraries
+  package_url: https://www.npmjs.com/ethers
+  version: 5.6.5
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17297/default_3ec53c4dad64de27b72cc81401e898b5aea82f2c.png
+  detection_source_url: package-lock.json
+  detection_source: package.json
+  last_updated_by: Kingsley Victor
+  last_updated_on: 2022-06-14 14:10:17.000000000 Z
+- name: size-limit
+  description: CLI tool for Size Limit
+  package_url: https://www.npmjs.com/size-limit
+  version: 7.0.8
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17177/default_eb6674f470fe213f950fd09d858ebb0f6b6e3dda.png
+  detection_source_url: package-lock.json
+  detection_source: package.json
+  last_updated_by: Kingsley Victor
+  last_updated_on: 2022-06-14 14:10:17.000000000 Z
+- name: tsdx
+  description: Zero-config TypeScript package development
+  package_url: https://www.npmjs.com/tsdx
+  version: 0.14.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16920/default_7b9968788548874538c601457e8dcd9c74bd2051.png
+  detection_source_url: package-lock.json
+  detection_source: package.json
+  last_updated_by: iamnotstatic
+  last_updated_on: 2022-04-13 19:25:19.000000000 Z
+- name: tslib
+  description: Runtime library for TypeScript helper functions
+  package_url: https://www.npmjs.com/tslib
+  version: 1.14.1
+  license: 0BSD
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15853/default_97d4687bd07ff1bb963fd566c84e7cbf7c73bbee.png
+  detection_source_url: package-lock.json
+  detection_source: package.json
+  last_updated_by: iamnotstatic
+  last_updated_on: 2022-04-11 13:13:47.000000000 Z
